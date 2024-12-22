@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Sahit Chintalapudi</title>
+
+    <meta name="author" content="Sahit Chintalapudi">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    
+  </head>
+
+  <body style="background-color: #f6edfa">
+    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr style="padding:0px">
+              <td style="padding:2.5%;width:63%;vertical-align:middle">
+                <img class="name" src="images/name.png" alt="Sahit Chintalapudi">
+                <p> Hi, my name is Sahit! I'm a Ph. D student at MIT in the <a href="https://lis.csail.mit.edu/">Learning and Intelligent Systems Group</a>, advised by Leslie Pack Kaelbling and Tomás Lozano-Pérez.</p>
+                <p> Prior to coming to MIT, I did my undergrad at Georgia Tech, where I was advised by Byron Boots in the Robot Learning Lab. I was also lucky enough to spend some time interning at the Robotics Lab at DeepMind, the <a href="https://hcrlab.cs.washington.edu/">Human-Centered Robotics Lab</a> at UW, and the <a href="https://www.ri.cmu.edu/robotics-groups/search-based-planning-laboratory/">Search-Based Planning Lab</a> at CMU. </p>
+                </p>
+                <p style="text-align:center">
+                  <a href="mailto:sahit@mit.edu">Email</a> &nbsp;/&nbsp;
+                  <a href="data/SahitChintalapudi-CV.pdf">CV</a> &nbsp;/&nbsp;
+                  <a href="https://scholar.google.com/citations?user=Qt9QIDkAAAAJ">Scholar</a> &nbsp;/&nbsp;
+                  <a href="https://github.com/chsahit/">Github</a> &nbsp;/&nbsp;
+                  <a href="https://www.goodreads.com/user/show/150845674-sahit">Goodreads</a> &nbsp;/&nbsp;
+                  <a href="https://letterboxd.com/safilm/">Letterboxd</a> &nbsp;/&nbsp;
+                  <a href="https://twitter.com/Sahitbot_iRL">Twitter</a>
+                </p>
+              </td>
+              <td style="padding:2.5%;width:37%;max-width:37%">
+                <a href="images/propic2.png"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/propic2.png" class="hoverZoomLink"></a>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+              <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <img class="h2_img" src="images/research_header.png" alt="Research">
+                <p>
+                  I am interested in making robots reason under uncertainty, especially for tasks that involve making and breaking contact with the environment. My research focuses on applying ideas from motion planning, geometry, and machine learning to this end in the context of robot manipulation. 
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+
+
+    <tr onmouseout="wafr_stop()" onmouseover="wafr_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+        <div class="two" id="wafr_img"><video width="130" muted autoplay loop>
+          <source src="images/wafr.mp4" type="video/mp4">Your browser does not support the video tag.
+        </video></div>
+          <img src='images/wafr_teaser.png' width="130">
+        </div>
+        <script type="text/javascript">
+          function wafr_start() {
+            document.getElementById('wafr_img').style.opacity = "1";
+            document.querySelector('#wafr_img video').playbackRate=5.0;
+          }
+
+          function wafr_stop() {
+            document.getElementById('wafr_img').style.opacity = "0";
+          }
+          wafr_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://www.algorithmic-robotics.org/papers/25_Bi_Level_Belief_Space_Searc.pdf">
+			<span class="papertitle">Bi-Level Belief Space Search for Compliant Part Mating Under Uncertainty
+</span>
+        </a>
+        <br>
+				<strong>Sahit Chintalapudi</strong>,
+				<a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a>,
+				<a href="https://people.csail.mit.edu/tlp/">Tomás Lozano-Pérez</a>
+        <br>
+        <em>WAFR</em>, 2024
+        <br>
+        <a href="https://arxiv.org/abs/2409.15774">arXiv</a>
+        <p></p>
+        <p>
+            We consider assembly tasks where the relative configuration parts is unknown due to sensing error. We formulate this problem as a search in Belief Space and introduce a Bi-Level Planner that reasons over both gripper trajectory and robot compliance.
+        </p>
+      </td>
+    </tr>
+
+
+    <tr onmouseout="ever_stop()" onmouseover="ever_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+          <div class="two" id='hbsp_image'>
+              <video width="170" muted autoplay loop>
+                  <source src="images/hbsp.mp4" type="video/mp4"></video>
+	    </div>
+          <img src='images/hbsp_teaser.png' width="170">
+        </div>
+        <script type="text/javascript">
+          function ever_start() {
+            document.getElementById('hbsp_image').style.opacity = "1";
+            document.querySelector('#hbsp_image video').playbackRate=0.4;
+          }
+
+          function ever_stop() {
+            document.getElementById('hbsp_image').style.opacity = "0";
+          }
+          ever_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://www.sciencedirect.com/science/article/pii/S0004370220301028">
+			<span class="papertitle">Effective footstep planning using homotopy-class guidance
+</span>
+        </a>
+        <br>
+				<a href="https://www.vinitharanganeni.com/">Vinitha Ranganeni</a>, 
+				<strong>Sahit Chintalapudi</strong>,
+                                <a href="https://orensalzman.com/">Oren Salzman</a>,
+                                <a href="https://www.cs.cmu.edu/~maxim/">Maxim Likhachev</a>
+				<br>
+        <em>Artificial Intelligence</em>, 2020
+        <br>
+        <a href="https://arxiv.org/abs/1712.00531">arXiv</a>
+        <p></p>
+        <p>
+            We introduce a heuristic which encourages A* search to stay within a homotopy class extracted from human demonstration, which rapidly improves search runtime.
+        </p>
+      </td>
+    </tr>
+
+
+            <tr onmouseout="gpmp_stop()" onmouseover="gpmp_start()">
+              <td style="padding:16px;width:20%;vertical-align:middle">
+                <div class="one">
+                    <div class="two" id="posh"><video width="170" muted autoplay loop>
+                        <source src="images/posh.mp4" type="video/mp4">Video tag unsupported</video></div>
+                    <img src="images/posh_teaser.png" alt="POSH" width="170">
+                    </div>
+                    <script type="text/javascript">
+                      function gpmp_start() {
+                        document.getElementById('posh').style.opacity = "1";
+                        document.querySelector('#posh video').playbackRate=2.0;
+                      }
+
+                      function gpmp_stop() {
+                        document.getElementById('posh').style.opacity = "0";
+                      }
+                      gpmp_stop()
+                    </script>
+
+              </td>
+              <td style="padding:8px;width:80%;vertical-align:middle">
+                <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8967598">
+                  <span class="papertitle">Online Motion Planning Over Multiple Homotopy Classes with Gaussian Process Inference</span>
+                </a>
+                <br>
+                <a href="https://www.linkedin.com/in/keshavkolur/">Keshav Kolur*</a>,
+                <strong> Sahit Chintalapudi* </strong>,
+                <a href="https://homes.cs.washington.edu/~bboots/">Byron Boots</a>,
+                <a href="https://www.mustafamukadam.com/">Mustafa Mukadam</a>
+                <br>
+                <em>IROS</em>, 2019
+                <br>
+                <a href="">arXiv</a>
+                <p></p>
+                <p>We show that sampling factor graphs can be used to recover diverse robot trajectories, which can be switched between in realtime for environments with moving obstacles.</p>
+              </td>
+            </tr>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:0px">
+                <br>
+                <p style="text-align:right;font-size:small;">
+                    Website Template from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron</a>, but egregious design choices were made at Sahit's prerogative.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
