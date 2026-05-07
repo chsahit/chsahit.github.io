@@ -20,8 +20,8 @@
             <tr style="padding:0px">
               <td style="padding:2.5%;width:63%;vertical-align:middle">
                 <img class="name" src="images/name.png" alt="Sahit Chintalapudi">
-                <p> Hi, my name is Sahit! I'm a Ph. D student at MIT in the <a href="https://lis.csail.mit.edu/">Learning and Intelligent Systems Group</a>, advised by Leslie Pack Kaelbling and Tomás Lozano-Pérez.</p>
-                <p> Prior to coming to MIT, I did my undergrad at Georgia Tech, where I was advised by Byron Boots in the Robot Learning Lab. I was also lucky enough to spend some time interning at the Robotics Lab at DeepMind, the <a href="https://hcrlab.cs.washington.edu/">Human-Centered Robotics Lab</a> at UW, and the <a href="https://www.ri.cmu.edu/robotics-groups/search-based-planning-laboratory/">Search-Based Planning Lab</a> at CMU. </p>
+                <p> Hi, my name is Sahit! I'm a final year Ph. D. student at MIT in the <a href="https://lis.csail.mit.edu/">Learning and Intelligent Systems Group</a>, advised by Leslie Pack Kaelbling and Tomás Lozano-Pérez.</p>
+                <p> Prior to coming to MIT, I did my undergrad at Georgia Tech, where I was advised by Byron Boots in the Robot Learning Lab. I was also lucky enough to spend some time interning at the Robotics Lab at DeepMind, the <a href="https://hcrlab.cs.washington.edu/">Human-Centered Robotics Lab</a> at UW, the <a href="https://www.ri.cmu.edu/robotics-groups/search-based-planning-laboratory/">Search-Based Planning Lab</a> at CMU, and at <a href="https://www.research.autodesk.com/research-areas/science/robotics/">Autodesk</a> in the summer of 2025, where I trained policies for assembly tasks. </p>
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:sahit@mit.edu">Email</a> &nbsp;/&nbsp;
@@ -50,6 +50,57 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+
+    <tr onmouseout="tiptop_stop()" onmouseover="tiptop_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+        <div class="two" id="tiptop_img"><video width="170" muted autoplay loop>
+          <source src="images/tiptop.mp4" type="video/mp4">Your browser does not support the video tag.
+        </video></div>
+          <img src='images/tiptop_teaser.png' width="170">
+        </div>
+        <script type="text/javascript">
+          function tiptop_start() {
+            document.getElementById('tiptop_img').style.opacity = "1";
+            document.querySelector('#tiptop_img video').playbackRate=1.0;
+          }
+
+          function tiptop_stop() {
+            document.getElementById('tiptop_img').style.opacity = "0";
+          }
+          tiptop_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://tiptop-robot.github.io/">
+			<span class="papertitle">TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation
+</span>
+        </a>
+        <br>
+				<a href="https://shen.nz">William Shen*</a>,
+				<a href="https://nishanthjkumar.com/">Nishanth Kumar*</a>,
+				<strong>Sahit Chintalapudi</strong>,
+				<a href="https://everloom-129.github.io/">Jie Wang</a>,
+				<a href="https://cwatson1998.github.io/">Christopher Watson</a>,
+				<a href="https://edwardshu.com/">Edward S. Hu</a>,
+				<a href="https://www.mit.edu/~jingcao/">Jing Cao</a>,
+				<a href="https://www.seas.upenn.edu/~dineshj/">Dinesh Jayaraman</a>,
+				<a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a>,
+				<a href="https://people.csail.mit.edu/tlp/">Tomás Lozano-Pérez</a>
+        <br>
+        <em>arXiv</em>, 2026
+        <br>
+        <a href="https://arxiv.org/abs/2603.09971">arXiv</a>
+        /
+        <a href="https://tiptop-robot.github.io/">website</a>
+        /
+        <a href="https://github.com/tiptop-robot/tiptop">code</a>
+        <p></p>
+        <p>
+            We present TiPToP, an extensible modular system that combines pretrained vision foundation models with an existing Task and Motion Planner to solve multi-step manipulation tasks directly from input RGB images and natural-language instructions.
+        </p>
+      </td>
+    </tr>
 
 
     <tr onmouseout="wafr_stop()" onmouseover="wafr_start()">
