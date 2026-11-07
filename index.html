@@ -9,7 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
+    <style>
+      pre.bibtex {
+        display: none;
+        white-space: pre-wrap;
+        font-size: 12px;
+        background: #ffffff;
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin: 8px 0 0 0;
+      }
+    </style>
+    <script type="text/javascript">
+      function toggleBib(id) {
+        var el = document.getElementById(id);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+      }
+    </script>
+
   </head>
 
   <body style="background-color: #f6edfa">
@@ -26,7 +43,6 @@
                 <p style="text-align:center">
                   <a href="mailto:sahit@mit.edu">Email</a> &nbsp;/&nbsp;
                   <a href="data/resume.pdf">Resume</a> &nbsp;/&nbsp;
-                  <a href="data/SahitChintalapudi-CV.pdf">CV</a> &nbsp;/&nbsp;
                   <a href="https://scholar.google.com/citations?user=Qt9QIDkAAAAJ">Scholar</a> &nbsp;/&nbsp;
                   <a href="https://github.com/chsahit/">Github</a> &nbsp;/&nbsp;
                   <a href="https://twitter.com/Sahitbot_iRL">Twitter</a>
@@ -51,6 +67,61 @@
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+
+    <tr onmouseout="proxy_stop()" onmouseover="proxy_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+        <div class="two" id="proxy_img"><video width="170" muted autoplay loop>
+          <source src="images/proxy.mp4" type="video/mp4">Your browser does not support the video tag.
+        </video></div>
+          <img src='images/proxy_teaser.png' width="170">
+        </div>
+        <script type="text/javascript">
+          function proxy_start() {
+            document.getElementById('proxy_img').style.opacity = "1";
+            document.querySelector('#proxy_img video').playbackRate=1.0;
+          }
+
+          function proxy_stop() {
+            document.getElementById('proxy_img').style.opacity = "0";
+          }
+          proxy_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="data/14_PROXY_Learning_Object_Centr.pdf">
+			<span class="papertitle">PROXY: Learning Object-Centric Manipulation Policies from a Single RGB-D Image
+</span>
+        </a>
+        <br>
+				Maggie Huili Yao,
+				<strong>Sahit Chintalapudi</strong>,
+				Akash Anand,
+				Megha Tippur,
+				<a href="https://people.csail.mit.edu/tlp/">Tomás Lozano-Pérez</a>,
+				<a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a>,
+				Aditya Agarwal
+        <br>
+        <em>RSS Workshop on Diffusion for Robot Learning</em>, 2026
+        <br>
+        <a href="data/14_PROXY_Learning_Object_Centr.pdf">paper</a>
+        /
+        <a href="https://openreview.net/forum?id=S5JbQGD9GB">OpenReview</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('proxy_bib')">bibtex</a>
+<pre class="bibtex" id="proxy_bib">@inproceedings{yao2026proxy,
+  title={PROXY: Learning Object-Centric Manipulation Policies from a Single RGB-D Image},
+  author={Yao, Maggie Huili and Chintalapudi, Sahit and Anand, Akash and Tippur, Megha and Lozano-P{\'e}rez, Tom{\'a}s and Kaelbling, Leslie Pack and Agarwal, Aditya},
+  booktitle={RSS 2026 Workshop on Diffusion for Robot Learning},
+  year={2026}
+}</pre>
+        <p></p>
+        <p>
+            We introduce PROXY, which learns an object-centric manipulation policy from a single RGB-D image and a task description, using a generative video model to synthesize diverse demonstrations with zero human data collection.
+        </p>
+      </td>
+    </tr>
 
 
     <tr onmouseout="tiptop_stop()" onmouseover="tiptop_start()">
@@ -97,6 +168,14 @@
         <a href="https://tiptop-robot.github.io/">website</a>
         /
         <a href="https://github.com/tiptop-robot/tiptop">code</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('tiptop_bib')">bibtex</a>
+<pre class="bibtex" id="tiptop_bib">@article{shen2026tiptop,
+  title={TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation},
+  author={Shen, William and Kumar, Nishanth and Chintalapudi, Sahit and Wang, Jie and Watson, Christopher and Hu, Edward S. and Cao, Jing and Jayaraman, Dinesh and Kaelbling, Leslie Pack and Lozano-P{\'e}rez, Tom{\'a}s},
+  journal={arXiv preprint arXiv:2603.09971},
+  year={2026}
+}</pre>
         <p></p>
         <p>
             We present TiPToP, an extensible modular system that combines pretrained vision foundation models with an existing Task and Motion Planner to solve multi-step manipulation tasks directly from input RGB images and natural-language instructions.
@@ -140,6 +219,15 @@
         <a href="https://arxiv.org/abs/2409.15774">arXiv</a>
         /
         <a href="https://github.com/chsahit/belief_space_assembly">code</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('wafr_bib')">bibtex</a>
+<pre class="bibtex" id="wafr_bib">@inproceedings{chintalapudi2024bilevel,
+  title={Bi-Level Belief Space Search for Compliant Part Mating Under Uncertainty},
+  author={Chintalapudi, Sahit and Kaelbling, Leslie Pack and Lozano-P{\'e}rez, Tom{\'a}s},
+  booktitle={International Workshop on the Algorithmic Foundations of Robotics},
+  pages={107--124},
+  year={2024}
+}</pre>
         <p></p>
         <p>
             We consider assembly tasks where the relative configuration parts is unknown due to sensing error. We formulate this problem as a search in Belief Space and introduce a Bi-Level Planner that reasons over both gripper trajectory and robot compliance.
@@ -185,6 +273,16 @@
         <a href="https://arxiv.org/abs/1712.00531">arXiv</a>
         /
         <a href="https://github.com/vinitha910/homotopy_guided_footstep_planner">code</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('hbsp_bib')">bibtex</a>
+<pre class="bibtex" id="hbsp_bib">@article{ranganeni2020effective,
+  title={Effective footstep planning using homotopy-class guidance},
+  author={Ranganeni, Vinitha and Chintalapudi, Sahit and Salzman, Oren and Likhachev, Maxim},
+  journal={Artificial Intelligence},
+  volume={286},
+  pages={103346},
+  year={2020}
+}</pre>
         <p></p>
         <p>
             We introduce a heuristic which encourages A* search to stay within a homotopy class extracted from human demonstration, which rapidly improves search runtime.
@@ -228,6 +326,14 @@
                 <a href="https://arxiv.org/abs/1908.00641">arXiv</a>
                 /
                 <a href="https://youtu.be/FtUI9VR3iWI">video</a>
+                /
+                <a href="javascript:void(0)" onclick="toggleBib('posh_bib')">bibtex</a>
+<pre class="bibtex" id="posh_bib">@inproceedings{kolur2019online,
+  title={Online Motion Planning Over Multiple Homotopy Classes with Gaussian Process Inference},
+  author={Kolur, Keshav and Chintalapudi, Sahit and Boots, Byron and Mukadam, Mustafa},
+  booktitle={2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2019}
+}</pre>
                 <p></p>
                 <p>We show that sampling factor graphs can be used to recover diverse robot trajectories, which can be switched between in realtime for environments with moving obstacles.</p>
               </td>
