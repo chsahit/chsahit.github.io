@@ -69,6 +69,62 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
 
+    <tr onmouseout="feijoa_stop()" onmouseover="feijoa_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+        <div class="two" id="feijoa_img"><video width="170" muted autoplay loop playsinline>
+          <source src="images/feijoa.mp4" type="video/mp4">Your browser does not support the video tag.
+        </video></div>
+          <img src='images/feijoa_teaser.png' width="170">
+        </div>
+        <script type="text/javascript">
+          function feijoa_start() {
+            document.getElementById('feijoa_img').style.opacity = "1";
+            document.querySelector('#feijoa_img video').playbackRate=1.0;
+          }
+
+          function feijoa_stop() {
+            document.getElementById('feijoa_img').style.opacity = "0";
+          }
+          feijoa_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://williamshen-nz.github.io/feijoa/">
+			<span class="papertitle">FEIJOA: Task-Driven Grounding and Execution for Mobile Manipulation</span>
+        </a>
+        <br>
+				<a href="https://skymanaditya1.github.io/">Aditya Agarwal</a>*,
+				<a href="https://shen.nz/">William Shen</a>*,
+				<strong>Sahit Chintalapudi</strong>&dagger;,
+				<a href="https://lucyc.ai/">Lucy Cai</a>&dagger;,
+				<a href="https://nishanthjkumar.com/">Nishanth Kumar</a>,
+				<a href="https://aidanreececurtis.com/">Aidan Curtis</a>,
+				<a href="https://people.csail.mit.edu/travis/">Travis Manderson</a>,
+				<a href="https://people.csail.mit.edu/tlp/">Tomás Lozano-Pérez</a>,
+				<a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a>
+        <br>
+        <em>CoRL Workshop on Agentic Robotics</em>, 2026
+        <br>
+        <a href="https://williamshen-nz.github.io/feijoa/">website</a>
+        /
+        <a href="https://arxiv.org/abs/2611.04080">arXiv</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('feijoa_bib')">bibtex</a>
+<pre class="bibtex" id="feijoa_bib">@inproceedings{agarwal2026feijoa,
+  title={FEIJOA: Task-Driven Grounding and Execution for Mobile Manipulation},
+  author={Agarwal, Aditya and Shen, William and Chintalapudi, Sahit and Cai, Lucy and Kumar, Nishanth and Curtis, Aidan and Manderson, Travis and Lozano-P{\'e}rez, Tom{\'a}s and Kaelbling, Leslie Pack},
+  booktitle={CoRL 2026 Workshop on Agentic Robotics},
+  year={2026}
+}</pre>
+        <p></p>
+        <p>
+            We present FEIJOA, a language-model agent for mobile manipulation that grounds open-ended instructions at test time by iteratively querying a grounding tool over an RGB-D scan, and executes skills through an embodiment-aware harness that checks feasibility and verifies each skill's effect.
+        </p>
+      </td>
+    </tr>
+
+
     <tr onmouseout="proxy_stop()" onmouseover="proxy_start()">
       <td style="padding:16px;width:20%;vertical-align:middle">
         <div class="one">
@@ -105,7 +161,9 @@
         <br>
         <em>RSS Workshop on Diffusion for Robot Learning</em>, 2026
         <br>
-        <a href="data/14_PROXY_Learning_Object_Centr.pdf">paper</a>
+        <a href="data/14_PROXY_Learning_Object_Centr.pdf">PDF</a>
+        /
+        <a href="https://skymanaditya1.github.io/proxy-website/">website</a>
         /
         <a href="https://openreview.net/forum?id=S5JbQGD9GB">OpenReview</a>
         /
