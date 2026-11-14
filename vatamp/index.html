@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VA-TAMP: Visibility-Aware Task and Motion Planning with Task-Centric Perception. Extending fully observed TAMP solvers to partially observable object rearrangement with an object-based memory and task-centric active perception.">
+  <meta name="keywords" content="VA-TAMP, task and motion planning, TAMP, active perception, partial observability, object-based memory, robot manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visibility-Aware Task and Motion Planning with Task-Centric Perception</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Noto+Sans+Mono|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./static/images/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VA-TAMP: Visibility-Aware Task and Motion Planning with Task-Centric Perception">
+  <meta property="og:description" content="Extending fully observed TAMP solvers to partially observable object rearrangement with an object-based memory and task-centric active perception.">
+  <meta property="og:image" content="./static/images/thumbnail.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VA-TAMP: Visibility-Aware Task and Motion Planning with Task-Centric Perception">
+  <meta name="twitter:image" content="./static/images/thumbnail.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };
+  </script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#abstract">Abstract</a>
+      <a class="navbar-item" href="#video">Video</a>
+      <a class="navbar-item" href="#method">Method</a>
+      <a class="navbar-item" href="#obm">Object-Based Memory</a>
+      <a class="navbar-item" href="#justify">Plan Justification</a>
+      <a class="navbar-item" href="#why">Why Each Component?</a>
+      <a class="navbar-item" href="#experiments">Experiments</a>
+      <a class="navbar-item" href="#BibTeX">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Visibility-Aware Task and Motion Planning with Task-Centric Perception</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- TODO: replace with author list and links once de-anonymized. -->
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- TODO: affiliations. -->
+            <span class="author-block">Submitted to ICRA 2027</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/vatamp_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link. TODO: fill in once posted.
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/XXXX.XXXXX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              -->
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#video"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-video"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. TODO: fill in once released.
+              <span class="link-block">
+                <a href="https://github.com/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/motivation.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="vatamp">VA-TAMP</span> extends fully observed TAMP solvers to partially observed domains
+        with an <b>object-based memory</b> and <b>task-centric active perception</b>.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Long-horizon manipulation under uncertainty remains a challenging problem in robotics.
+            We present <span class="vatamp">VA-TAMP</span>, an algorithm for Visibility-Aware Task and Motion Planning.
+            <span class="vatamp">VA-TAMP</span> extends existing deterministic task and motion planning solvers to
+            partially observable object rearrangement tasks, while still being able to take advantage of the
+            efficiency and compositional generalization over long horizons of the base solver.
+            This extension interleaves sensing actions into a plan skeleton that assumed full observability, and
+            uses a novel persistent object-based memory to fuse observations into object mesh hypotheses and an
+            observed occupancy map.
+            We evaluate <span class="vatamp">VA-TAMP</span> on real-world tabletop rearrangement tasks which
+            feature heavy occlusion and partial visibility and demonstrate that it outperforms baselines that do
+            not perform active perception or have persistent memory.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="section-video">
+          <video id="full-video" controls muted playsinline preload="metadata" poster="./static/images/teaser_1_wrist_t0.jpg">
+            <source src="./static/videos/vatamp_video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section" id="motivation">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Why is this hard?</h2>
+        <div class="content has-text-justified">
+          <p>
+            A longstanding challenge in robotic manipulation is completing long-horizon tasks in heavily occluded
+            environments with unfamiliar objects. When object models and poses are known <i>a priori</i>, Task and
+            Motion Planning (TAMP) solvers can efficiently compose manipulation skills to achieve a goal. Otherwise,
+            object models can be estimated from an observation and passed to a TAMP solver. These approaches assume
+            that the initial observation models the scene accurately enough to find a goal-achieving plan.
+          </p>
+          <p>
+            Consider a tabletop rearrangement task, such as the one illustrated below, where the robot has to place
+            the cleaning supplies on the red tray. In the initial observation, the full extent of the tray (which
+            already has other cleaning supplies on it) is not visible to the robot, and the cleaning supplies that
+            the robot has to manipulate are partially occluded by the cardboard boxes. This setting is partially
+            observable; the robot does not know the full shape of any of the objects in the scene, and thus it must
+            make a plan from raw observations which are noisy and incomplete.
+          </p>
+        </div>
+
+        <div class="columns figure-grid">
+          <div class="column has-text-centered">
+            <img src="./static/images/teaser_1_wrist_t0.jpg" alt="Initial wrist view."/>
+            <p class="caption">(a) Initial wrist view. Goal:
+              <code class="goal-pre">{On(spray-bottle, red-tray), On(green-eraser, red-tray)}</code></p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/teaser_2_hulls_t0.jpg" alt="Initial scene estimate."/>
+            <p class="caption">(b) Initial scene estimate: a convex hull per detected object.</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/teaser_3_wrist_full.jpg" alt="Planned wrist view."/>
+            <p class="caption">(c) A planned wrist view reveals the full extent of the eraser.</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/teaser_4_completed_t0.jpg" alt="Completed shapes."/>
+            <p class="caption">(d) Task-relevant objects refined into completed shapes.</p>
+          </div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            The naive approach to this problem, re-estimating and replanning with every new observation, suffers
+            from two main shortcomings. First, any single observation is not sufficient to accurately model the
+            scene. Second, TAMP solvers output strictly goal-oriented plans, meaning that they cannot direct the
+            perception toward the task-relevant parts of the scene or remove occluding objects. In the example
+            above, no single view shows the far edge of the tray, and a plan that only reaches for the eraser never
+            looks behind the boxes that occlude it. On the other end of the spectrum, belief space planners
+            explicitly model uncertainty in the environment state and search for plans by reasoning over full
+            observation distributions obtained by each action. However, modeling geometric uncertainty requires
+            reasoning over extremely high-dimensional distributions which quickly becomes intractable.
+          </p>
+          <p>
+            Our approach exploits the compositional generalization and efficiency of TAMP solvers while tracking
+            object model accuracy and unobserved regions of space. <span class="vatamp">VA-TAMP</span> augments
+            off-the-shelf TAMP solvers with action constraints requiring the robot to verify its object models
+            before interacting with the objects. These constraints induce information gathering actions that
+            provide observations for refining the models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="vatamp">VA-TAMP</span> extends fully observed TAMP to partially observed domains by
+            coupling object-based memory with scene-model verification. The memory supplies object meshes and an
+            occupancy grid, and the planner constructs a goal-reaching plan that also validates the meshes. As
+            observations arrive, the remaining plan guides refinement of task-relevant objects.
+          </p>
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/method_overview.png" alt="Overview of the VA-TAMP policy." style="width: 100%; max-width: 1000px;"/>
+        </div>
+        <p class="figure-caption">
+          <b>Overview of <span class="vatamp">VA-TAMP</span>.</b>
+          RGB-D observations update an object-based memory (OBM), which maintains observed occupancy \(V_t\) and
+          object mesh hypotheses \(\mathcal{M}_t\). Given a goal \(G\), a fully observed TAMP solver computes a plan
+          \(p\) over \(\mathcal{M}_t\). <span style="font-variant: small-caps;">Justify</span> uses \(\mathcal{M}_t\)
+          and \(V_t\) to derive a set of visibility preconditions \(\Phi\) and insert <code>look</code> actions to
+          produce a justified plan \(\hat p\). These preconditions are checked against \(V_t\) to select the next
+          action \(a_t\) or trigger replanning. The plan also guides OBM refinement, prioritizing mesh hypotheses
+          that are relevant to the plan and inconsistent with accumulated observations.
+        </p>
+
+        <div class="content has-text-justified">
+          <p>
+            Given a set of object meshes, we can leverage existing classical TAMP solvers to generate a plan
+            skeleton: an optimistic plan that assumes the current object meshes are accurate and is entirely
+            goal-oriented. To guard against this optimism, we require that every plan be <i>justified</i>.
+            This means that any time the plan requires the robot to move through space, it must have observed that
+            the space is collision free. Any time the plan requires the robot to grasp an object at a given pose,
+            it must have observed that the object surface exists in between the fingers at that pose. To justify a
+            plan, the planner has to find motions that move the camera to viewpoints where the desired regions are
+            visible. The initial hull of the green eraser (b) does not justify a grasp; the planner inserts the
+            wrist view in (c), which reveals the eraser's full extent and lets the grasp proceed.
+          </p>
+          <p>
+            <span class="vatamp">VA-TAMP</span> takes a model-predictive control style approach to constructing a
+            policy. We combine a state estimator which computes models of the scene conditioned on observations
+            with an action-selection module which selects an action conditioned on the goal and current scene
+            models. On execution of the action, the policy receives a new observation, which it uses to update its
+            model and continue execution or replan. The action selection starts by solving a fully observed TAMP
+            problem assuming \(\mathcal{M}\) is the true state to get a plan backbone \(p\). The
+            <span style="font-variant: small-caps;">Justify</span> procedure derives observation-conditioned
+            preconditions for manipulation actions and then interleaves sensing actions into the plan to verify the
+            preconditions to get the justified plan \(\hat{p}\). If the preconditions hold in the true scene, we
+            execute the actions in the plan and receive new observations, which are used to update the OBM. If the
+            preconditions do not hold, the OBM is queried for a fresh scene model to plan against.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Contributions</h3>
+        <div class="content has-text-justified">
+          <ul>
+            <li>
+              <b><span class="vatamp">VA-TAMP</span>: An algorithm for Visibility-Aware Task and Motion Planning.</b>
+              <span class="vatamp">VA-TAMP</span> augments classical TAMP solvers with a persistent memory system
+              and task-driven information gathering behavior. We show that this method outperforms systems which
+              don't perform active perception or do not associate object detections across observations.
+            </li>
+            <li>
+              <b>A task-centric, resource-rational OBM.</b>
+              Accurately modeling a scene is a computationally expensive task, with state-of-the-art completion
+              models taking 4-5 seconds per object in a single frame. Rather than completing every object in every
+              frame, the OBM prioritizes reconstruction on objects that are task-relevant and do not yet have a
+              good model.
+            </li>
+            <li>
+              <b>Efficient information gathering in partially observable problems by leveraging a fully observed
+                TAMP solver.</b>
+              We use the result of an existing TAMP solver to define which regions of space the robot interacts
+              with, either as motion in assumed free space or contact with assumed object surfaces. We make the
+              observation of these regions of space a precondition to acting, forcing the robot to collect more
+              observations and update its models as needed.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="obm">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task-Centric Object-Based Memory</h2>
+        <div class="content has-text-justified">
+          <p>
+            In order to build and refine our scene representation as we observe more of the scene and objects
+            move, we define an <i>Object-Based Memory</i> module (OBM). The OBM collects a history of observations
+            and maintains two complementary representations of the scene. The first representation is an occupancy
+            grid, which accumulates depth data and tracks the regions of space that have not yet been observed.
+            The second representation is a set of objects that are believed to exist in the scene after being
+            detected in individual observations. The OBM associates these detections on a per-object basis and
+            leverages a generative image-to-3D reconstruction model to hypothesize a complete 3D mesh geometry
+            from partial RGBD observations.
+          </p>
+          <p>
+            Formally, the OBM takes as input an observation history \(o_{1:t}\) and the robot's current plan
+            \(\hat{p}\). It returns a collection of posed surface meshes \(\mathcal{M}_t\) and an occupancy map
+            \(V_t\), where each voxel is labeled <code>empty</code>, <code>full</code>, or <code>unknown</code>.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column">
+            <h3 class="title is-4">Associating detections into <i>slots</i></h3>
+            <div class="content has-text-justified">
+              <p>
+                Our OBM maintains a set of <i>object slots</i>, each representing a hypothesized object through its
+                observation history and current 3D geometry estimate. For each observation, we query a VLM for
+                bounding boxes of objects on the table, then use a segmentation model to refine each box into an
+                object mask. These detections are then either associated with an existing object
+                slot, by matching DINO and geometric similarity, or initialize a new object slot. Image-to-3D
+                generative models provide a data driven prior for object completion.
+              </p>
+            </div>
+            <div class="section-video">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/obm_slots.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <h3 class="title is-4">OBM updating during robot execution</h3>
+            <div class="content has-text-justified">
+              <p>
+                The voxel grid \(V\) is instantiated from the first observation and updated in real time as new
+                observations arrive. Querying the generative shape model is slow relative to the observation
+                frequency, so the OBM makes at most one query per <i>perception step</i>, running in parallel with
+                robot execution. Estimating \(\mathcal{M}_t\) is therefore a sequential decision problem: at each
+                step, the OBM chooses which object to refine and whether the returned mesh should replace its
+                current hypothesis.
+              </p>
+            </div>
+            <div class="section-video">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/obm_exec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Choosing what to refine</h3>
+        <div class="content has-text-justified">
+          <p>
+            The OBM is resource-rational and task-centric: it focuses its computation time on objects that the
+            planner has decided are relevant to the task. Because the true geometries in the scene are unknown, we
+            define a surrogate cost \(\mathcal{L}\) which measures how inconsistent a candidate posed mesh is with
+            the object detections and observed points. The OBM then greedily picks the slot whose current estimate
+            is the most inconsistent with its evidence, weighted by task relevance,
+          </p>
+          <p class="has-text-centered">
+            \( i^{*} = \arg\max_{i}\; w(M_t^i, \hat{p}_t)\, \mathcal{L}(M_t^i, \mathcal{P}_t^i, \mathcal{D}_t^i), \qquad
+               w(M_t^i, \hat{p}_t) = \exp\!\Big(-\beta \min_{x \in M_t^i,\; y \in \tau_{ee}(\hat{p}_t)} \|x - y\|\Big), \)
+          </p>
+          <p>
+            where \(\tau_{ee}(\hat{p}_t)\) is the end-effector path swept by the current plan. The selected slot is
+            passed to the image-to-3D model, and the returned mesh replaces the current hypothesis only if it is
+            more consistent with the accumulated observations. In the motivating example, the eraser and tray are
+            refined into complete meshes while the cardboard boxes are left as the coarse hulls from the first
+            frame.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="justify">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Plan Justification</h2>
+        <div class="content has-text-justified">
+          <p>
+            The input to plan justification is a plan \(p = (a_1, \ldots, a_n)\) from a TAMP solver that treated
+            the OBM's mesh hypotheses \(\mathcal{M}_t\) as ground truth. The output is a <i>justified</i> plan
+            \(\hat{p}\), which interleaves <code>Look</code> actions with the original manipulation actions in
+            \(p\), and a set of <i>visibility preconditions</i> \(\Phi\). These preconditions are tested before
+            each action executes, and hold when the constraints on the hypothesized meshes \(\mathcal{M}_t\) are
+            supported by the observed occupancy grid \(V_t\). A justified plan should be <i>valid</i>: before each
+            manipulation action, the preceding <code>Look</code> actions should have labeled every voxel its
+            precondition depends on. It should also be <i>efficient</i>, avoiding observations that increase the
+            original plan's cost without validating or helping refine a task-relevant object.
+          </p>
+          <p>
+            Looks are inserted by a fixed rule. For each <code>pick</code> and <code>place</code> pair in \(p\), a
+            <code>look</code> for the pick's precondition and another for the place's precondition are both
+            inserted immediately before the <code>pick</code>. The place's look is not deferred until after the
+            pick because, once the robot grasps something, the hand is no longer free and the wrist camera cannot
+            collect new observations. The policy then executes \(\hat{p}\) in order, checking each precondition
+            against the current \(V_t\) before its action runs and returning to the OBM for a fresh scene estimate
+            when a check fails: if \(\phi\) is not satisfied, replan.
+          </p>
+        </div>
+
+        <div class="section-video has-text-centered">
+          <video autoplay controls muted loop playsinline style="max-width: 900px;">
+            <source src="./static/videos/preconditions.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="figure-caption">
+          Observe the parts of the environment the plan interacts with, replan if the observations contradict
+          the estimated meshes. A fully observed TAMP solution is <i>justified</i> by inserting <code>look</code>
+          actions at planned look poses; when the observed spray can occupies space assumed empty, the robot
+          replans with updated meshes.
+        </p>
+
+        <h3 class="title is-4">Deriving visibility preconditions</h3>
+        <div class="columns is-vcentered">
+          <div class="column is-half">
+            <img src="./static/images/fig_pcf.png" alt="A visibility precondition before and after the look." style="width: 100%;"/>
+          </div>
+          <div class="column is-half">
+            <div class="content has-text-justified">
+              <p>
+                Every visibility precondition is a tuple of point sets \(\phi_a = (F_a, E_a)\), where every point in
+                \(F_a\) must be labeled <code>full</code> and every point in \(E_a\) must be labeled
+                <code>empty</code>.
+              </p>
+              <p>
+                The figure shows a precondition for <code>pick(eraser, g, q)</code>. (a) The precondition computed
+                from an estimated \(\mathcal{M}_t\). The finger contacts \(F_a\) (pink) must read <code>full</code>,
+                and the swept volume of the gripper along the grasp trajectory \(E_a\) must read <code>empty</code>.
+                The blue cells are known to be empty, the orange cells are unknown. (b) After the look, the
+                required cells are observed and \(\phi_a\) holds.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <ul>
+            <li>
+              <b><code>pick</code>:</b> the antipodal constraint on the grasp depends on the surface of the object
+              at the two finger contacts, so \(F_a\) contains the points on the object where the finger pads close.
+              The collision-free constraint is on the volume swept by the arm while approaching the grasp, so
+              \(E_a\) contains samples of this volume.
+            </li>
+            <li>
+              <b><code>place</code>:</b> the support constraint starts by defining the &ldquo;footprint&rdquo; of
+              the object as the projection of its volume onto a plane at its lowest point. \(F_a\) contains a column
+              of points below each cell of the footprint, satisfied when any point in the column is labeled
+              <code>full</code>. The collision-free constraint depends on the footprint at the placement, the volume
+              swept by the held object along its carry, and the volume swept by the arm, so \(E_a\) contains samples
+              of all three.
+            </li>
+          </ul>
+          <p>
+            The visibility precondition holds when a fixed fraction of the constrained points have been observed
+            and have the required label. Preconditions are derived once from the plan with respect to
+            \(\mathcal{M}_t\) and re-derived whenever \(\mathcal{M}_t\) changes.
+          </p>
+        </div>
+
+        <h3 class="title is-4">The <code>look</code> operator</h3>
+        <div class="content has-text-justified">
+          <p>
+            Satisfying a visibility precondition requires new observations. The <code>Look</code> action takes a
+            precondition and a sequence of camera poses. A single pose is insufficient when the points of a
+            precondition do not fit in one field of view, or are occluded from one direction and visible from
+            another. The sampler for the camera poses is a greedy set cover over the subset of \(F_a \cup E_a\)
+            that is currently labeled <code>unknown</code> in \(V_t\). Each round selects an <code>unknown</code>
+            point and samples candidate camera poses on the surface of a sphere around that point, oriented to look
+            at the point. Samples are discarded if they are kinematically infeasible, are predicted to be occluded
+            by other objects in the scene, or move the robot through points not labeled <code>empty</code>. Among
+            the surviving samples, we keep the one whose field of view contains the most points in the precondition
+            that are still <code>unknown</code>. If no cover can be found, the precondition is marked unobservable;
+            its precondition then fails at execution time and the policy replans. Because the underlying TAMP solver
+            assumes full observability, the <code>Look</code> actions assume that there is some viewpoint from which
+            the region can be viewed, rather than planning actions to increase the visibility. In order to construct
+            a solvable problem for the fully observed TAMP planner, we also assume that the initial observation
+            contains every object referenced in the goal statement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="why">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Why Each Component?</h2>
+        <div class="content has-text-justified">
+          <p>
+            We find that each layer of added task complexity motivates another component of
+            <span class="vatamp">VA-TAMP</span>. Each pair below shows the same task executed with and without one
+            component.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Why have object-based memory?</h3>
+        <div class="columns is-vcentered">
+          <div class="column is-three-fifths section-video">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/why_obm.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <div class="content has-text-justified">
+              <p><b>Left: open-loop planning from the initial observation.</b> The yellow block is covered and
+                under approximated so it is placed too close to the edge.</p>
+              <p><b>Right: updating models online.</b> The OBM updates the yellow block when its full extent is
+                revealed.</p>
+              <p>In the <b>Cubes on Bread</b> task, the bottom cube was occluded, which required a memory system to
+                associate and update the initial bottom cube representation after revealing the full extent.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Why have <i>resource-rational</i> object-based memory?</h3>
+        <div class="columns is-vcentered">
+          <div class="column is-three-fifths section-video">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/why_rr.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <div class="content has-text-justified">
+              <p><b>Left: task-agnostic slot selection</b> \(\arg\max \mathcal{L}_i\). The blue cup is covered by
+                the box and under approximated.</p>
+              <p><b>Right: task-weighted slot selection</b> \(\arg\max \mathcal{L}_i \cdot w_i\). Allocating compute
+                to task-relevant objects allows the blue cup to be updated and grasped correctly.</p>
+              <p>The <b>Teacup on Plate</b> task clutters the scene with many task-irrelevant objects. An OBM that
+                focused on greedily improving the worst mesh in the scene would miss the task-relevant objects.
+                By weighing the objects higher due to their proximity to the robot in its nominal plan, the objects
+                are refined earlier by the OBM.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Why perform active perception?</h3>
+        <div class="columns is-vcentered">
+          <div class="column is-three-fifths section-video">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/why_ap.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <div class="content has-text-justified">
+              <p><b>Left: updating models based on passively collected observations.</b> The robot grasps the
+                spray can without getting a good view first: the grasp fails.</p>
+              <p><b>Right: updating models based on actively collected observations.</b> The robot grasps the
+                spray can after observing and updating models: the grasp succeeds.</p>
+              <p>In the <b>Supplies on Tray</b> task, the robot does not incidentally receive useful information
+                while performing goal-oriented tasks. The cardboard boxes occlude the cleaning supplies visually but
+                do not prevent the robot from reaching for those supplies, so the robot has to plan observations
+                which do not directly interact with the objects in the scene, but do serve to validate the robot's
+                scene models.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Planned vs. executed: <span class="vatamp">VA-TAMP</span> on Supplies on Tray</h3>
+        <div class="columns pair-videos">
+          <div class="column section-video">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/plan_vatamp_supplies.mp4" type="video/mp4">
+            </video>
+            <p class="figure-caption has-text-centered">Planned motion over the OBM's current mesh hypotheses, including the inserted looks.</p>
+          </div>
+          <div class="column section-video">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/run_vatamp_supplies.mp4" type="video/mp4">
+            </video>
+            <p class="figure-caption has-text-centered">The same run executed on the Franka FR3.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="experiments">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Experiments</h2>
+        <div class="content has-text-justified">
+          <p>
+            Partially observable object rearrangement is a ubiquitous but surprisingly under-studied problem
+            setting and, as such, there are no directly comparable existing methods. We explore the effectiveness of
+            <span class="vatamp">VA-TAMP</span> in three scenarios of increasing complexity that were specifically
+            designed to stress different aspects of the problem. Our ablations and tasks are designed to explore the
+            following questions:
+          </p>
+          <div class="callout">
+            <p><b>Q1:</b> Do planned views derived from the current scene estimate generate useful targets for
+              active perception?</p>
+            <p><b>Q2:</b> Does a task-centric approach to model refinement improve downstream planning performance?</p>
+          </div>
+          <p>
+            We answer <b>Q1</b> by defining the visibility-unaware ablation <code>VUTAMP</code>, which does not
+            actively plan observation actions or derive visibility preconditions for replanning. We answer
+            <b>Q2</b> by defining the <code>VUTAMP-UNIFORM</code> ablation, which follows the same planning and
+            replanning loop as <code>VUTAMP</code>, but the update strategy for the OBM is task-agnostic. Finally,
+            we compare against <b>TiPToP</b>, an open-loop model-based planning system that forms initial
+            conservative estimates of the scene and executes the generated plan open-loop, without updating on new
+            observations.
+          </p>
+          <p>
+            We perform evaluations on the Franka FR3 with a ZED-M wrist camera. The perception pipeline uses
+            Gemini-ER-2 as the VLM, SAM2 as the segmentation model, and RecGen as the image-to-3D reconstruction
+            model. The fully observed TAMP solver we use is cuTAMP, a GPU-parallelized TAMP solver.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Tasks</h3>
+        <div class="columns figure-grid">
+          <div class="column has-text-centered">
+            <img src="./static/images/scene_cubes.jpg" alt="Cube on Bread initial view."/>
+            <p class="caption"><b>Cubes on Bread.</b> The robot must pick up two stacked blocks and place both of
+              them on the slice of bread. Moving the top block reveals the extent of the bottom block.</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/scene_teacups.jpg" alt="Teacups on Plate initial view."/>
+            <p class="caption"><b>Teacup on Plate.</b> The robot has to move the blue cup from the table to the
+              flower-shaped plate. To do this, it must first take the occluding block off the cup.</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/scene_supplies.jpg" alt="Supplies on Tray initial view."/>
+            <p class="caption"><b>Supplies on Tray.</b> Two cleaning supplies are occluded by the boxes in the
+              scene, which the robot has to look behind. The tray also has collision obstacles that are not
+              visible from the initial view.</p>
+          </div>
+        </div>
+        <p class="figure-caption has-text-centered">The initial wrist-camera view of each task.</p>
+
+        <h3 class="title is-4">Results</h3>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <table class="table results is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Cubes on Bread</th>
+                  <th>Teacup on Plate</th>
+                  <th>Supplies on Tray</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>TiPToP</td><td>2 / 10</td><td>3 / 10</td><td>0 / 10</td></tr>
+                <tr><td><code>VUTAMP-UNIFORM</code></td><td>8 / 10</td><td>3 / 10</td><td>2 / 10</td></tr>
+                <tr><td><code>VUTAMP</code></td><td>8 / 10</td><td>9 / 10</td><td>2 / 10</td></tr>
+                <tr><td><span class="vatamp">VA-TAMP</span></td><td class="best">9 / 10</td><td class="best">10 / 10</td><td class="best">10 / 10</td></tr>
+              </tbody>
+            </table>
+            <p class="figure-caption has-text-centered">Success rate (successful trials / attempted trials) for each method on each scene.</p>
+          </div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            In the <b>Cubes on Bread</b> task, TiPToP's failures could be divided largely into grasp failures due to
+            trying to place the robot's finger inside the body of the bottom cube, and placement failures due to
+            trying to place the bottom cube onto a region of the toast that the top cube had already occupied.
+            Because <code>VUTAMP-UNIFORM</code> was able to update its memories, it could outperform TiPToP.
+          </p>
+          <p>
+            In the <b>Cubes on Bread</b> task, there were only three objects in the scene and they were all
+            task-relevant. The <b>Teacup on Plate</b> task introduces another layer of complexity by cluttering the
+            scene with many task-irrelevant objects. By weighing the objects higher due to their proximity to the
+            robot in its nominal plan, the objects are refined earlier by the OBM, leading to <code>VUTAMP</code>
+            outperforming <code>VUTAMP-UNIFORM</code>.
+          </p>
+          <p>
+            In the <b>Supplies on Tray</b> task, the two main failure modes were grabbing an object about its longer
+            axis (which seemed collision-free due to the cardboard box occlusion), or trying to place the objects on
+            the red tray at an orientation that caused collision with the obstacles already there. In both cases,
+            the robot had to plan observations which did not directly interact with the objects in the scene, but
+            did serve to validate the robot's scene models. <span class="vatamp">VA-TAMP</span> is the only method
+            that does this and thus has the strongest performance on this task.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h3 class="title is-4 has-text-centered">Real-robot runs</h3>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_vatamp_supplies.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay"><span class="vatamp">VA-TAMP</span> &middot; Supplies on Tray</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_vutamp_supplies.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay"><code>VUTAMP</code> &middot; Supplies on Tray</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_tiptop_supplies.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay">TiPToP &middot; Supplies on Tray</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_vutamp_bread.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay"><code>VUTAMP</code> &middot; Cubes on Bread</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_tiptop_bread.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay">TiPToP &middot; Cubes on Bread</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_vutamp_teacups.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay"><code>VUTAMP</code> &middot; Teacup on Plate</div>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/run_vutamp_uniform_teacups.mp4" type="video/mp4">
+          </video>
+          <div class="label-overlay"><code>VUTAMP-UNIFORM</code> &middot; Teacup on Plate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="summary">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Summary</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>We present <span class="vatamp">VA-TAMP</span>, an algorithm for solving partially observable object
+              rearrangement problems by integrating active perception and a persistent object-based memory into a
+              classic TAMP solver.</li>
+            <li>We use a resource-rational OBM to focus compute on plan-relevant objects and synthesize coherent
+              scene representations across multiple observations.</li>
+            <li>We define <i>visibility preconditions</i>, fine grained geometric tests of mesh completions
+              conditioned on camera observations.</li>
+            <li>We justify these mechanisms via 120 real world trials across 3 challenging tabletop manipulation
+              tasks.</li>
+          </ul>
+          <p>
+            Our tabletop experiments showed that both components were necessary in scenes with distractor objects,
+            occlusion, and out-of-frame obstacles. Our approach assumes that the initial observation supports a
+            nominal plan that can guide information gathering. Integrating object search could extend it to settings
+            in which some objects are missing from the scene model. We currently use generative shape models
+            conditioned on a single image. Models that incorporate multiple observations offer a promising
+            alternative, but their inference time scales poorly with the number of views. Selecting informative or
+            diverse subsets of observations could help make these models practical within the OBM. Finally,
+            reconstruction methods that combine RGBD observations with contact could extend plan justification to
+            include touch-based verification.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- TODO: update once the paper is public. -->
+    <pre><code>@inproceedings{vatamp2027,
+  author    = {Anonymous Authors},
+  title     = {Visibility-Aware Task and Motion Planning with Task-Centric Perception},
+  booktitle = {Submitted to IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2027},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="./static/vatamp_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is built on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            template, licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+            International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
