@@ -69,6 +69,60 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
 
+    <tr onmouseout="vatamp_stop()" onmouseover="vatamp_start()">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+        <div class="two" id="vatamp_img"><video width="170" muted autoplay loop playsinline>
+          <source src="images/vatamp.mp4" type="video/mp4">Your browser does not support the video tag.
+        </video></div>
+          <img src='images/vatamp_teaser.png' width="170">
+        </div>
+        <script type="text/javascript">
+          function vatamp_start() {
+            document.getElementById('vatamp_img').style.opacity = "1";
+            document.querySelector('#vatamp_img video').playbackRate=1.0;
+          }
+
+          function vatamp_stop() {
+            document.getElementById('vatamp_img').style.opacity = "0";
+          }
+          vatamp_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://sahitc.com/vatamp/">
+			<span class="papertitle">Visibility-Aware Task and Motion Planning with Task-Centric Perception</span>
+        </a>
+        <br>
+				<strong>Sahit Chintalapudi</strong>,
+				<a href="https://xiaoyan.horizonian.com/">Xiaoyan Wang</a>,
+				Aryan Zoroufi,
+				<a href="https://skymanaditya1.github.io/">Aditya Agarwal</a>,
+				<a href="https://web.mit.edu/bcs/nklab/">Nancy Kanwisher</a>,
+				<a href="https://people.csail.mit.edu/tlp/">Tomás Lozano-Pérez</a>,
+				<a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a>
+        <br>
+        <em>arXiv preprint</em>, 2026
+        <br>
+        <a href="https://arxiv.org/abs/2611.16213">arXiv</a>
+        /
+        <a href="https://sahitc.com/vatamp/">website</a>
+        /
+        <a href="javascript:void(0)" onclick="toggleBib('vatamp_bib')">bibtex</a>
+<pre class="bibtex" id="vatamp_bib">@article{chintalapudi2026vatamp,
+  title={Visibility-Aware Task and Motion Planning with Task-Centric Perception},
+  author={Chintalapudi, Sahit and Wang, Xiaoyan and Zoroufi, Aryan and Agarwal, Aditya and Kanwisher, Nancy and Lozano-P{\'e}rez, Tom{\'a}s and Kaelbling, Leslie Pack},
+  journal={arXiv preprint arXiv:2611.16213},
+  year={2026}
+}</pre>
+        <p></p>
+        <p>
+            We present VA-TAMP, which extends deterministic task and motion planning solvers to partially observable object rearrangement by interleaving sensing actions into the plan skeleton and fusing observations into a persistent object-based memory of mesh hypotheses and observed free space.
+        </p>
+      </td>
+    </tr>
+
+
     <tr onmouseout="feijoa_stop()" onmouseover="feijoa_start()">
       <td style="padding:16px;width:20%;vertical-align:middle">
         <div class="one">
